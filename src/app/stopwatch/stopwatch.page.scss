@@ -12,7 +12,7 @@
   }
   
   .time-display {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -21,8 +21,8 @@
   .time-circle {
     background: #C96342;
     border-radius: 50%;
-    width: 230px;
-    height: 230px;
+    width: 200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,7 +45,7 @@
   
   .time {
     color: white;
-    font-size: 2.8rem;
+    font-size: 2.3rem;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     letter-spacing: 2px;
@@ -55,7 +55,7 @@
   
   .milliseconds {
     color: rgba(255,255,255,0.8);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-variant-numeric: tabular-nums;
     z-index: 1;
   }
@@ -63,7 +63,7 @@
   .controls {
     display: flex;
     gap: 1rem;
-    margin: 2rem 0;
+    margin: 1rem 0;
     
     .control-button {
       min-width: 120px;
@@ -123,5 +123,9 @@
     .time-circle {
       backdrop-filter: blur(20px);
     }
+  }
+
+  ion-content{
+    --background: white !important;
   }
 
