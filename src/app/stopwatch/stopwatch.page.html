@@ -1,17 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Stopwatch
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding" scroll-y="false" >
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Stopwatch</ion-title>
+      <ion-title size="large" class="ion-margin-top title">Stopwatch</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Stopwatch page"></app-explore-container>
+  <div class="stopwatch-container">
+    <div class="time-display">
+      <div class="time-circle">
+        <span class="time">{{displayTime}}</span>
+        <span class="milliseconds">{{milliseconds}}</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <ion-button 
+        (click)="startStop()" 
+        class="control-button"
+        shape="round"
+        size="large">
+        <ion-icon [name]="isRunning ? 'pause' : 'play'" slot="start"></ion-icon>
+        {{isRunning ? 'Pause' : 'Start'}}
+      </ion-button>
+
+      <ion-button 
+        (click)="reset()" 
+        class="control-button"
+        shape="round"
+        size="large"
+        [disabled]="!hasStarted">
+        <ion-icon name="close-outline" slot="start"></ion-icon>
+        Reset
+      </ion-button>
+    </div>
+
+    <ion-list class="lap-times" *ngIf="lapTimes.length > 0">
+      <ion-list-header>
+        <ion-label>Lap Times</ion-label>
+      </ion-list-header>
+
+      <ion-item *ngFor="let lap of lapTimes; let i = index">
+        <ion-label>Lap {{lapTimes.length - i}}</ion-label>
+        <ion-note slot="end">{{lap}}</ion-note>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

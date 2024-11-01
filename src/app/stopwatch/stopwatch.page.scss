@@ -1,0 +1,125 @@
+
+.title{
+    --color: #C96342;
+}
+.stopwatch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1rem;
+    overflow: hidden;
+    height: 80vh;
+  }
+  
+  .time-display {
+    margin: 2rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .time-circle {
+    background: #C96342;
+    border-radius: 50%;
+    width: 230px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 24px #C96342;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+      z-index: 0;
+    }
+  }
+  
+  .time {
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    z-index: 1;
+  }
+  
+  .milliseconds {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+    font-variant-numeric: tabular-nums;
+    z-index: 1;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    
+    .control-button {
+      min-width: 120px;
+      height: 48px;
+      --border-radius: 24px;
+      font-weight: 600;
+      --background: #C96342; 
+      
+      ion-icon {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  
+  .lap-times {
+    width: 100%;
+    max-width: 400px;
+    background: transparent;
+    margin-top: 1rem;
+    height: 30vh;
+    overflow-y: auto;
+    
+    ion-list-header {
+      --background: transparent;
+      padding-bottom: 1rem;
+      
+      ion-label {
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: #C96342;
+      }
+    }
+    
+    ion-item {
+      --background: transparent;
+      --border-color: #C96342;
+      --padding-start: 1rem;
+      --padding-end: 1rem;
+      --min-height: 50px;
+
+      ion-label{
+        color: #C96342;
+        font-weight: 600;
+      }
+      ion-note {
+        font-size: 1rem;
+        color: black;
+        font-variant-numeric: tabular-nums;
+      }
+    }
+  }
+  
+  // iOS styles
+  .ios {
+    .time-circle {
+      backdrop-filter: blur(20px);
+    }
+  }
+
