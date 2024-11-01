@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Collapsible Header on Scroll -->
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Profile Image Section -->
+  <div class="profile-container">
+    <img src="https://randomuser.me/api/portraits/men/20.jpg" alt="Profile Image" class="profile-image" />
+    <h2 class="profile-name">John Doe</h2>
+    <p class="profile-info">Software Engineer at Tech Corp</p>
+  </div>
+
+  <!-- Profile Details -->
+  <ion-list>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-note slot="end">john.doe&#64;example.com</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Phone</ion-label>
+      <ion-note slot="end">+123 456 7890</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Location</ion-label>
+      <ion-note slot="end">New York, USA</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Member Since</ion-label>
+      <ion-note slot="end">January 2020</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

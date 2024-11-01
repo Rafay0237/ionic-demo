@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../stopwatch/stopwatch.module').then(m => m.StopwatchPageModule)
       },
       {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
