@@ -1,0 +1,89 @@
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .display-input {
+    width: 100%;
+    font-size: 2.5rem;
+    text-align: right;
+    padding: 10px 20px;
+    color: white;
+    border:none;
+    outline: none;
+    position: relative;
+    background-color: black;
+  }
+
+
+  .typing-effect {
+    position: absolute;
+    right: 10px; 
+    top: -5px;
+    transform: translateY(-50%); 
+    font-size: 2.8rem;
+    color: white;
+    opacity: 1;
+    animation: blink 1s infinite; 
+  }
+  
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  ion-toolbar{
+    --background: black;
+    color: white;
+  }
+
+  
+  .calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.control-button {
+    height: 60px;
+    font-size: 1.2rem;
+    --background: #C96342; 
+    --background-hover: #b15638; 
+    --background-activated: #b96042;
+  }
+  
+  
+  .zero-button {
+    grid-column: span 2; 
+  }
+
+  .main {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%; 
+  }
+
+  .top{
+    position: absolute;
+    top: 5vh;
+  }
+
+  ion-content{
+    --background: black;
+
+  }
+  

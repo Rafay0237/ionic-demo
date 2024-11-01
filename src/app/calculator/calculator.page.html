@@ -1,17 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Calculator
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
+
+<ion-content [fullscreen]="true" scroll-y="false" class="ion-padding calculator-container">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Calculator</ion-title>
+    <ion-toolbar class="top">
+        <input type="text" [value]="display" readonly class="display-input" />
+        @if(display===''){
+          <p class="typing-effect">|</p>
+        }
     </ion-toolbar>
   </ion-header>
+  
+  <div class="main">
+  
+  <div class="calculator-buttons">
+    <!-- First Row -->
+    <ion-button (click)="clear()" class="control-button">C</ion-button>
+    <ion-button (click)="deleteLast()" class="control-button">DEL</ion-button>
+    <ion-button (click)="appendOperator('/')" class="control-button">/</ion-button>
+    <ion-button (click)="appendOperator('*')" class="control-button">*</ion-button>
 
-  <app-explore-container name="Calculator page"></app-explore-container>
+    <!-- Second Row -->
+    <ion-button (click)="appendNumber('7')" class="control-button">7</ion-button>
+    <ion-button (click)="appendNumber('8')" class="control-button">8</ion-button>
+    <ion-button (click)="appendNumber('9')" class="control-button">9</ion-button>
+    <ion-button (click)="appendOperator('-')" class="control-button">-</ion-button>
+
+    <!-- Third Row -->
+    <ion-button (click)="appendNumber('4')" class="control-button">4</ion-button>
+    <ion-button (click)="appendNumber('5')" class="control-button">5</ion-button>
+    <ion-button (click)="appendNumber('6')" class="control-button">6</ion-button>
+    <ion-button (click)="appendOperator('+')" class="control-button">+</ion-button>
+
+    <!-- Fourth Row -->
+    <ion-button (click)="appendNumber('1')" class="control-button">1</ion-button>
+    <ion-button (click)="appendNumber('2')" class="control-button">2</ion-button>
+    <ion-button (click)="appendNumber('3')" class="control-button">3</ion-button>
+    <ion-button (click)="calculate()" class="control-button">=</ion-button>
+
+    <!-- Fifth Row -->
+    <ion-button (click)="appendNumber('0')" class="control-button zero-button">0</ion-button>
+    <ion-button (click)="appendDot()" class="control-button">.</ion-button>
+  </div>
+</div>
 </ion-content>
