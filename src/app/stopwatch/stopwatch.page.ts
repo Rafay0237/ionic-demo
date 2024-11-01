@@ -31,6 +31,7 @@ export class StopwatchPage implements OnInit, OnDestroy {
 
   startTimer() {
     this.isRunning = true;
+    this.time=0;
     this.interval = setInterval(() => {
       this.time += 10; // Increment by 10ms
       this.updateDisplay();
