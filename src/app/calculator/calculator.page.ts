@@ -45,7 +45,7 @@ export class CalculatorPage {
     try {
       this.display = eval(this.display).toString();  // Use eval cautiously
     } catch (e) {
-      this.display = 'Error';  // If there's a problem with the calculation
+      this.display = 'Error';  
     }
   }
 

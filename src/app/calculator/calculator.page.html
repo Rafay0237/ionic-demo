@@ -1,14 +1,13 @@
 
 
 <ion-content [fullscreen]="true" scroll-y="false" class="ion-padding calculator-container">
-  <ion-header collapse="condense">
-    <ion-toolbar class="top">
-        <input type="text" [value]="display" readonly class="display-input" />
-        @if(display===''){
-          <p class="typing-effect">|</p>
-        }
-    </ion-toolbar>
-  </ion-header>
+ 
+  <ion-toolbar class="top">
+      <input type="text" [value]="display" readonly class="display-input" />
+      @if(display===''){
+        <p class="typing-effect">|</p>
+      }
+  </ion-toolbar>
   
   <div class="main">
   
