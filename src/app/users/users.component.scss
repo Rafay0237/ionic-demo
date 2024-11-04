@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.ion-content-scroll-host {
+  height: 100%;
+  width: 100%;
+}
+
+.error-message {
+  text-align: center;
+  padding: 20px;
+  color: var(--ion-color-danger);
+}
+
+
+ion-item {
+  --min-height: 25px; 
+}
+
+ion-avatar {
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
+}
+
+cdk-virtual-scroll-viewport {
+  height: 100%;
+  width: 100%;
+}
+
+::ng-deep {
+  .cdk-virtual-scroll-content-wrapper {
+    width: 100%;
+  }
+}

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Users</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollY="false">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <cdk-virtual-scroll-viewport
+    [itemSize]="itemSize"
+    class="ion-content-scroll-host">
+    
+    <ion-list>
+      <ion-item *cdkVirtualFor="let user of users; trackBy: trackByFn" >
+        <ion-avatar slot="start">
+          <ion-img [src]="user.url"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ user.title }}</h2>
+          <p>ID: {{ user.id }}</p>
+        </ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+  </cdk-virtual-scroll-viewport>
+
+  <ion-text color="danger" *ngIf="error">
+    <p class="error-message">{{ error }}</p>
+  </ion-text>
+</ion-content>

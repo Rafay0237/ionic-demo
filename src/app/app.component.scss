@@ -1,0 +1,6 @@
+cdk-virtual-scroll-viewport {
+    & > .cdk-virtual-scroll-content-wrapper {
+      width: 100%;
+      contain: unset;
+    }
+  }
