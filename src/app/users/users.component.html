@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
   <!-- Refresher for pull-to-refresh -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -16,7 +16,7 @@
   </ion-refresher>
 
   <!-- Virtual scroll for performance with large data sets -->
-  <cdk-virtual-scroll-viewport [itemSize]="itemsPerPage">
+  <cdk-virtual-scroll-viewport itemSize="25" class="ion-content-scroll-host">
     <ion-list>
       <ion-item *cdkVirtualFor="let user of users; trackBy: trackByFn">
         <ion-avatar slot="start">
