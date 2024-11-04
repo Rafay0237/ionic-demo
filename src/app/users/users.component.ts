@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController, IonContent } from '@ionic/angular';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
 interface User {
   id: number;
@@ -73,14 +74,14 @@ export class UsersPage implements OnInit {
 
     this.isFetchingMore = true; // Prevent multiple requests
     this.currentPage++;
-
+  
     this.fetchUsers(this.currentPage).subscribe({
       next: (response) => {
-        this.users = [...this.users, ...response]; // Append new users
+        this.users = [...this.users, ...response]; 
         setTimeout(()=>{
           this.isFetchingMore = false;
-        },500)
-        event.target.complete(); // Notify infinite scroll that loading is done
+          (event as InfiniteScrollCustomEvent).target.complete(); // Notify infinite scroll that loading is done
+        },1000)
 
         // Disable infinite scroll if no more users to load
         if (this.users.length >= this.totalUsers) {
@@ -106,11 +107,11 @@ export class UsersPage implements OnInit {
         this.infiniteScrollDisabled = this.users.length >= this.totalUsers;
 
         if (this.viewport) {
-          this.viewport.scrollToIndex(0); // Scroll back to the top
+          this.viewport.scrollToIndex(0); 
         }
 
         if (this.users.length < this.totalUsers) {
-          event.target.disabled = false; // Re-enable infinite scroll if applicable
+          event.target.disabled = false; 
         }
       },
       error: (error) => {
