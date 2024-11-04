@@ -4,7 +4,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content scrollY="false">
+<ion-content>
+  <!-- Refresher for pull-to-refresh -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -14,12 +15,10 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <cdk-virtual-scroll-viewport
-    [itemSize]="itemSize"
-    class="ion-content-scroll-host">
-    
+  <!-- Virtual scroll for performance with large data sets -->
+  <cdk-virtual-scroll-viewport [itemSize]="itemsPerPage">
     <ion-list>
-      <ion-item *cdkVirtualFor="let user of users; trackBy: trackByFn" >
+      <ion-item *cdkVirtualFor="let user of users; trackBy: trackByFn">
         <ion-avatar slot="start">
           <ion-img [src]="user.url"></ion-img>
         </ion-avatar>
@@ -30,9 +29,17 @@
         <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-item>
     </ion-list>
-
   </cdk-virtual-scroll-viewport>
 
+  <!-- Infinite Scroll to load more users -->
+  <ion-infinite-scroll threshold="300px" (ionInfinite)="loadMoreUsers($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more users...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <!-- Error message if any -->
   <ion-text color="danger" *ngIf="error">
     <p class="error-message">{{ error }}</p>
   </ion-text>
