@@ -21,7 +21,6 @@ export class UsersPage implements OnInit {
 
   users: User[] = [];
   isLoading = false;
-  isFetchingMore = false; 
   error: string | null = null;
   currentPage = 1;
   itemsPerPage = 7;
@@ -66,35 +65,29 @@ export class UsersPage implements OnInit {
     return this.http.get<User[]>(url);
   }
 
-  async loadMoreUsers(event: any) {
-    if (this.isFetchingMore || this.users.length >= this.totalUsers) {
-      event.target.disabled = true; 
-      return;
-    }
-    this.isFetchingMore = true; 
-    this.currentPage++;
-    
-    this.fetchUsers(this.currentPage).subscribe({
-      next: (response) => {
-        this.users = [...this.users, ...response]; 
-        setTimeout(()=>{
-          this.isFetchingMore = false;
-          (event as InfiniteScrollCustomEvent).target.complete(); 
-        },500)
-        
-        if (this.users.length >= this.totalUsers) {
-          event.target.disabled = true;
-        }
-      },
-      error: (error) => {
-        this.error = 'Failed to load more users. Please try again later.';
-        this.isFetchingMore = false;
-        event.target.complete();
-        console.error('Error loading more users:', error);
+  async loadMoreUsers(event: InfiniteScrollCustomEvent) {  
+    try {
+      this.currentPage++;
+      
+      const response = await this.fetchUsers(this.currentPage).toPromise();
+      
+      if (response && response.length>0) {
+        this.infiniteScrollDisabled = response.length ? false : true;
+        this.users = [...this.users, ...response];
       }
-    });
+      
+      if (this.users.length >= this.totalUsers) {
+        event.target.disabled = true;
+      }
+      
+    } catch (error) {
+      this.error = 'Failed to load more users. Please try again later.';
+      console.error('Error loading more users:', error);
+    } finally {
+        event.target.complete();
+    }
   }
-
+ 
   async doRefresh(event: any) {
     this.currentPage = 1;
 
