@@ -21,12 +21,12 @@ export class UsersPage implements OnInit {
 
   users: User[] = [];
   isLoading = false;
-  isFetchingMore = false; // Flag to prevent overlapping requests
+  isFetchingMore = false; 
   error: string | null = null;
   currentPage = 1;
-  itemsPerPage = 20;
-  totalUsers = 5000; // Estimated total number of users
-  infiniteScrollDisabled = false; // Controls the state of infinite scroll
+  itemsPerPage = 7;
+  totalUsers = 600; 
+  infiniteScrollDisabled = false; 
 
   constructor(
     private http: HttpClient,
@@ -68,22 +68,20 @@ export class UsersPage implements OnInit {
 
   async loadMoreUsers(event: any) {
     if (this.isFetchingMore || this.users.length >= this.totalUsers) {
-      event.target.disabled = true; // Disable infinite scroll if all users are loaded
+      event.target.disabled = true; 
       return;
     }
-
-    this.isFetchingMore = true; // Prevent multiple requests
+    this.isFetchingMore = true; 
     this.currentPage++;
-  
+    
     this.fetchUsers(this.currentPage).subscribe({
       next: (response) => {
         this.users = [...this.users, ...response]; 
         setTimeout(()=>{
           this.isFetchingMore = false;
-          (event as InfiniteScrollCustomEvent).target.complete(); // Notify infinite scroll that loading is done
-        },1000)
-
-        // Disable infinite scroll if no more users to load
+          (event as InfiniteScrollCustomEvent).target.complete(); 
+        },500)
+        
         if (this.users.length >= this.totalUsers) {
           event.target.disabled = true;
         }
@@ -102,7 +100,7 @@ export class UsersPage implements OnInit {
 
     this.fetchUsers(this.currentPage).subscribe({
       next: (response) => {
-        this.users = response; // Reset users with refreshed data
+        this.users = response; 
         event.target.complete();
         this.infiniteScrollDisabled = this.users.length >= this.totalUsers;
 
